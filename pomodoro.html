@@ -17,8 +17,61 @@
   width: 50%;
   bottom: 0%;
   left: 25%;
-  background: green;
+  background: white;
   border: 1px solid black;
+  font-size: 3em;
+  text-align: center;
+}
+.break_time{
+  position: absolute;
+  height: 25%;
+  width: 50%;
+  top: 0%;
+  left: 0%;
+  background: white;
+  border: 1px solid black;
+}
+.clock_time{
+  position: absolute;
+  height: 25%;
+  width: 50%;
+  top: 0%;
+  right: 0%;
+  background: white;
+  border: 1px solid black;
+}
+.numberArea{
+  position: absolute;
+  height: 100%;
+  width: 33%;
+  top: 0%;
+  right: 33%;
+  background: white;
+  border: 1px solid black;
+  font-size: 2em;
+  text-align: center;
+}
+.minus{
+  position: absolute;
+  height: 100%;
+  width: 33%;
+  top: 0%;
+  left: 0%;
+  background: white;
+  border: 1px solid black;
+  font-size: 3em;
+  text-align: center;
+}
+.plus{
+  position: absolute;
+  height: 100%;
+  width: 33%;
+  top: 0%;
+  right: 0%;
+  background: white;
+  border: 1px solid black;
+  font-size: 3em;
+  text-align: center;
 }
 </style>
 </head>
@@ -28,8 +81,16 @@
 
   <div class="container">
     <div class="clock">5</div>
-    <div class="break"></div>
-    <div class="timer"></div>
+    <div class="break_time">
+      <div class="numberArea"></div>
+      <div class="minus">-</div>
+      <div class="plus">+</div>
+    </div>
+    <div class="clock_time">
+      <div class="numberArea"></div>
+      <div class="minus">-</div>
+      <div class="plus">+</div>
+    </div>
   </div>
 
 <script src="pomodoro.js"></script>
