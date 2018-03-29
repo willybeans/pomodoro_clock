@@ -1,4 +1,5 @@
-var a = 6, b = 5, c = true;
+var a = 6, b = 10, c = true;
+var userTimer = 10, userBreak = 11;
 var clock = document.querySelector('.clock');
 
 window.onload = () => {
@@ -7,17 +8,22 @@ window.onload = () => {
 }
 
 const countDown = function(){
+  var rest = true;
   if (c){
-    console.log("false");
     c = false;
   } else {
-    console.log("true");
     c = true;
   }
   var myTimer = setInterval(counter, 1000);
   function counter() {
-    if (a < 0 || c){
-      clearInterval(myTimer);
+    if(a === 0 && rest){ //User is in break mode
+      a = userBreak;
+      rest = false;
+    }
+    else if (a < 0 || c){ //user is on Timer mode
+      a = userTimer;
+      rest = true;
+      //clearInterval(myTimer);
     } else {
       clock.textContent = a--;
     }
