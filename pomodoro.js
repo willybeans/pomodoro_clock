@@ -3,25 +3,23 @@ var clock = document.querySelector('.clock');
 
 window.onload = () => {
   clock.textContent = a;
-  countDown();
+  clock.addEventListener("click", countDown);
 }
 
 const countDown = function(){
-  clock.onclick = () => {
-    if (c) {
-      console.log("if");
-      var counter = setInterval(function(){
-        console.log("none");
-        clock.textContent = a--;
-        c = false;
-          if(a < 0) {
-            clearInterval(counter);
-            c = true;
-          }
-      }, 1000);
+  if (c){
+    console.log("false");
+    c = false;
+  } else {
+    console.log("true");
+    c = true;
+  }
+  var myTimer = setInterval(counter, 1000);
+  function counter() {
+    if (a < 0 || c){
+      clearInterval(myTimer);
     } else {
-      console.log("else");
-      clearInterval(counter);
+      clock.textContent = a--;
     }
   }
 }
