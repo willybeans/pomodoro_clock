@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <style>
 .container{
   position: relative;
@@ -61,6 +65,7 @@
   border: 1px solid black;
   font-size: 3em;
   text-align: center;
+  z-index: 100;
 }
 .plus{
   position: absolute;
@@ -72,6 +77,7 @@
   border: 1px solid black;
   font-size: 3em;
   text-align: center;
+  z-index: 100;
 }
 </style>
 </head>
@@ -79,18 +85,20 @@
 
 <body>
 
-  <div class="container">
-    <div class="clock">5</div>
+  <div class="container" id="container">
+    <div class="clock" id="clock">5</div>
+    <div id="test">
     <div class="break_time">
-      <div class="numberArea"></div>
-      <div class="minus">-</div>
-      <div class="plus">+</div>
+      <div class="numberArea">4</div>
+      <div class="minus" id="minus break breakMinus">-</div>
+      <div class="plus" id="plus break breakPlus">+</div>
     </div>
     <div class="clock_time">
-      <div class="numberArea"></div>
-      <div class="minus">-</div>
-      <div class="plus">+</div>
+      <div class="numberArea">4</div>
+      <div class="minus" id="minus clock clockMinus">-</div>
+      <div class="plus" id="plus clock clockPlus">+</div>
     </div>
+  </div>
   </div>
 
 <script src="pomodoro.js"></script>
