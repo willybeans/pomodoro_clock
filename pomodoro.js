@@ -1,27 +1,14 @@
-var a = 25, b = 10, c = true, rest = true, onOff = 0;
-var userTimer = 2, userBreak = 3;
-var clock = document.querySelector('.clock');
-var breakTime = document.querySelector('.break_time');
-var clockTime = document.querySelector('.clock_time');
-
-///when you change the timer length, it reverts to 25 after starting the countdown
+var a = 2, b = 10, c = true, rest = true, onOff = 0, userTimer = 25, seconds = 0,
+    clock = document.querySelector('.clock');
+    breakTime = document.querySelector('.break_time');
+    clockTime = document.querySelector('.clock_time');
 
 window.onload = () => {
-console.log(290/60);
-
-  clock.textContent = a;
-  //clock.addEventListener("click", countDown);
+  clock.textContent = userTimer;
   document.querySelector('.container').addEventListener('click', function(e){
-    // if(counter === 0){
-    //   console.log("hi");
-    //   counter++;
-    // }
-  //  console.log(counter);
     if (e.target !== e.currentTarget){
-      //console.log(e.target.id);
       var clickedItem = e.target.className;
       var itemParent = e.target.parentNode.className;
-    //  console.log(e.target.childNodes);
       if (clickedItem === 'clock'){
         countDown();
       } else {
@@ -31,60 +18,51 @@ console.log(290/60);
     e.stopPropagation();
   }, false );
 }
-
-const changeLength = function(clickedItem, itemParent){
+const changeLength = function(clickedItem, itemParent){ //allows user to edit time
   var numberArea = document.querySelector('.' + itemParent).childNodes[1];
     if(clickedItem === "minus"){
       numberArea.textContent = numberArea.textContent - 1;
       } else {
         numberArea.textContent = Number(numberArea.textContent) + 1;
       }
-
     if((itemParent === "clock_time" && c !== false) && (onOff === 0)){
       userTimer = Number(numberArea.textContent);
+      a = userTimer;
       clock.textContent = numberArea.textContent;
     }
-  //document.querySelector('.' + itemParent).childNodes[1].textContent = "hi";
-/* i think we need to get a function to split the id apart
-  and then we can do for example -> first find minus, then take the second
-  half of the id that will specify which div to subtract from?
-*/
-
 }
-
-const countDown = function(){
-  console.log(onOff + "hi");
-  if(onOff === 0){
-    console.log("hi");
+const countDown = function(){ //runs timer
+  if(onOff === 0){ //to limit user edit ability after starting timer
     onOff++;
   }
-
-  if (c){
+  if (c){ //this turns the timer on and off.
     c = false;
   } else {
     c = true;
   }
-  var myTimer = setInterval(counter, 1000);
-  function counter() {
+  var myTimer = setInterval( () => {
     if(c){
       clearInterval(myTimer);
-    } else if(a === 0 && rest){ //User is in break mode
-      a = document.querySelector('.break_time').childNodes[1].textContent;
-      clock.textContent = a--;
+    } else if (userTimer === 1) {
+      userTimer = 0;
+    } else if((userTimer <= 0 && seconds <= 0) && rest){ //User is in break mode
+      console.log("break");
+      userTimer = document.querySelector('.break_time').childNodes[1].textContent;
+      userTimer--;
+      seconds = 59;
       rest = false;
-    }
-    else if (a < 0 || c){ //user is on Timer mode
-      a = userTimer;
-      clock.textContent = a--;
+    } else if ((userTimer <= 0 && seconds <= 0) && !rest){ //user is on Timer mode
+      console.log("timer");
+      userTimer = document.querySelector('.clock_time').childNodes[1].textContent;
+      userTimer--;
       rest = true;
-      //clearInterval(myTimer);
+      seconds = 59;
+    } else if (seconds <= 0 && userTimer > 0) {
+      userTimer--;
+      seconds = 59;
     } else {
-      /* so for example if you change a to userTimer it fixes it but now it can go negative
-      and the function of switchging break and such is gliching so be more delicate
-      in switching the variables
-
-      i think A is perhaps a helpful neccesity */
-      clock.textContent = a--;
+      seconds--;
     }
-  }
+    clock.textContent = (seconds < 10) ? userTimer+":0"+seconds : userTimer+":"+seconds;
+  }, 1000);
 }
