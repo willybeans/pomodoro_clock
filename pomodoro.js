@@ -1,15 +1,19 @@
-var a = 2, b = 10, c = true, rest = true, onOff = 0, userTimer = 25, seconds = 0,
+var onOff = true, rest = true,
+    canEdit = 0, userTimer = 25, seconds = 0,
     clock = document.querySelector('.clock');
     breakTime = document.querySelector('.break_time');
     clockTime = document.querySelector('.clock_time');
-
+/*still need to allow user to hit a "reset" button*/
 window.onload = () => {
-  clock.textContent = userTimer;
+  setTime();
   document.querySelector('.container').addEventListener('click', function(e){
     if (e.target !== e.currentTarget){
       var clickedItem = e.target.className;
       var itemParent = e.target.parentNode.className;
-      if (clickedItem === 'clock'){
+
+      if(clickedItem === 'resetButt'){
+        resetButt();
+      } else if (clickedItem === 'clock'){
         countDown();
       } else {
         changeLength(clickedItem, itemParent);
@@ -18,42 +22,49 @@ window.onload = () => {
     e.stopPropagation();
   }, false );
 }
+const resetButt = function (){
+    onOff = true;
+    canEdit = 0;
+    userTimer = 25;
+    seconds = 0;
+    breakTime.childNodes[1].textContent = 5;
+    clockTime.childNodes[1].textContent = 25;
+    setTime();
+}
 const changeLength = function(clickedItem, itemParent){ //allows user to edit time
   var numberArea = document.querySelector('.' + itemParent).childNodes[1];
-    if(clickedItem === "minus"){
+  if(clickedItem === "minus"){
       numberArea.textContent = numberArea.textContent - 1;
       } else {
         numberArea.textContent = Number(numberArea.textContent) + 1;
       }
-    if((itemParent === "clock_time" && c !== false) && (onOff === 0)){
+    if((itemParent === "clock_time" && onOff !== false) && (canEdit === 0)){
       userTimer = Number(numberArea.textContent);
-      a = userTimer;
       clock.textContent = numberArea.textContent;
     }
+    setTime();
 }
 const countDown = function(){ //runs timer
-  if(onOff === 0){ //to limit user edit ability after starting timer
-    onOff++;
+  if(canEdit === 0){ //to limit user edit ability after starting timer
+    canEdit++;
   }
-  if (c){ //this turns the timer on and off.
-    c = false;
+  if (onOff){ //this turns the timer on and off.
+    onOff = false;
   } else {
-    c = true;
+    onOff = true;
   }
   var myTimer = setInterval( () => {
-    if(c){
+    if(onOff){
       clearInterval(myTimer);
     } else if (userTimer === 1) {
       userTimer = 0;
     } else if((userTimer <= 0 && seconds <= 0) && rest){ //User is in break mode
-      console.log("break");
-      userTimer = document.querySelector('.break_time').childNodes[1].textContent;
+      userTimer = breakTime.childNodes[1].textContent;
       userTimer--;
       seconds = 59;
       rest = false;
     } else if ((userTimer <= 0 && seconds <= 0) && !rest){ //user is on Timer mode
-      console.log("timer");
-      userTimer = document.querySelector('.clock_time').childNodes[1].textContent;
+      userTimer = clockTime.childNodes[1].textContent;
       userTimer--;
       rest = true;
       seconds = 59;
@@ -63,6 +74,9 @@ const countDown = function(){ //runs timer
     } else {
       seconds--;
     }
-    clock.textContent = (seconds < 10) ? userTimer+":0"+seconds : userTimer+":"+seconds;
+    setTime();
   }, 1000);
+}
+const setTime = function(){
+  clock.textContent = (seconds < 10) ? userTimer+":0"+seconds : userTimer+":"+seconds;
 }
