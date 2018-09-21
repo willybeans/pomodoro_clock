@@ -1,7 +1,3 @@
-require("./style.scss");
-//clicking on "clock-container" still glitchy
-//wont let me click on text anymore
-/*you need to add a pause/go button unfortunately i guess... or maybe you can get away with mostly not changing much*/
 var onOff = true,
     rest = true,
     canEdit = 0,
@@ -10,9 +6,8 @@ var onOff = true,
 const clock = document.querySelector('.clock'),
     breakTime = document.querySelector('.break_time'),
     clockTime = document.querySelector('.session_time'),
-    /*still need to allow user to hit a "reset" button*/
     window.onload = () => {
-        setTime(); //dont forget this event was for .clock-container
+        setTime(); //this event was for .clock-container
         document.querySelector('.wrapper').addEventListener('click', function(e) {
             if (e.target !== e.currentTarget) {
                 var clickedItem = e.target.className;
