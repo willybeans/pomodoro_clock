@@ -1,0 +1,295 @@
+=placement($w, $h, $l, $t, $z)
+  position: absolute
+  width: $w
+  height: $h
+  left: $l
+  top: $t
+  z-index: $z
+%borders-solid
+  border: 2px solid black
+%borders-toast
+  border: 1.5px solid #554011
+%toast-curve
+  border-radius: 50%
+%toast-color
+  background: #FFFEDF
+%crust-color
+  background: #C78F55
+%jelly-border
+  border: 3px solid #88C8EE
+%jelly-color
+  background: #A4D0ED
+%shine
+  background: #E1E7EB
+body
+  font-family: 'Reenie Beanie', cursive
+  font-size: 3em
+  text-align: center
+  background: black
+.wrapper
+  position: relative
+  margin: auto
+  display: block
+  margin-top: 1%
+  height: 600px
+  width: 800px
+  background: #476776
+.wall-outer
+  background: #7A8D9C
+  @extend %borders-solid
+  +placement(100%, 100%, 0, 0, 1)
+  margin: 1px
+.wall-inner-top
+  background: #476776
+  box-shadow: 0 0 10px #000000
+  @extend %borders-solid
+  +placement(85%,60%,5%,5%,2)
+.wall-inner-bottom
+  background: #476776
+  @extend %borders-solid
+  +placement(70%,30%,20%,70%,2)
+  border-radius: 25%
+  transform: skewX(55deg)
+  box-shadow: 0 0 10px #000000
+.container
+  +placement(60%,60%,5%,6%,3)
+.toast-body-copy, .toast-curve-right-copy, .toast-curve-right, .toast-curve-left-copy, .toast-curve-left
+  @extend %toast-color
+.toast-curve-left, .toast-curve-left-copy, .toast-curve-right
+  @extend %toast-curve
+.toast-curve-left
+  @extend %borders-toast
+  +placement(50%,60%,5%,0%,4)
+.toast-curve-left-copy
+  +placement(48%,58%,8%,3%,4)
+.toast-curve-right
+  @extend %borders-toast
+  +placement(40%,70%,50%,0%,4)
+  transform: rotate(60deg)
+.toast-curve-right-copy
+  border-radius: 39%
+  +placement(38%,50%,40%,20%,4)
+.toast-body-copy
+  @extend %borders-toast
+  +placement(50%,55%,25%,40%,3)
+  border-radius: 5%
+.toast-crust-right
+  @extend %crust-color
+  border-left: solid 3px #6B5426
+  +placement(30%,45%,48%,8%,2)
+  transform: rotate(75deg)
+  border-radius: 20%
+.toast-crust-left
+  @extend %crust-color
+  border: solid 3px #6B5426
+  +placement(50%,60%,1%,2%,2)
+  border-radius: 50%
+.toast-crust-left-copy
+  @extend %crust-color
+  +placement(48%,58%,3%,5%,3)
+  border-radius: 50%
+.toast-crust-body
+  @extend %crust-color
+  border: solid 3px #6B5426
+  +placement(53%,55%,21%,41%,2)
+  border-radius: 5%
+.dots
+  background: #EBE6AF
+  border: 1px solid #EBE6AF
+  @extend %toast-curve
+#dot1
+  +placement(9%,9%,1%,30%,4)
+#dot2
+  +placement(6%,6%,12%,35%,4)
+#dot3
+  +placement(3%,3%,10%,45%,4)
+.jelly-kid-container
+  +placement(50%,60%,40%,30%,2)
+.jelly-bonnet
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(25%,15%,50%,-5%,2)
+  border-radius: 50%
+.jelly-bonnet-copy
+  @extend %jelly-color
+  +placement(24%,14%,51%,-3%,5)
+  border-radius: 50%
+#bonnet-shine-one
+  +placement(15%,60%,70%,-10%,2)
+  transform: rotate(-65deg)
+.jelly-head
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(65%,55%,28%,5%,4)
+  border-radius: 50%
+#head-shine-top
+  +placement(3%,20%,95%,28%,2)
+  transform: rotate(-16deg)
+#head-shine-bottom
+  +placement(5%,10%,94%,55%,2)
+  transform: rotate(-5deg)
+.jelly-face
+  +placement(80%,60%,10%,10%,2)
+  background: #CAE0ED
+  border-radius: 50%
+.jelly-face-left
+  +placement(60%,60%,5%,12%,2)
+  background: #CAE0ED
+  border-radius: 50%
+.jelly-face-right
+  +placement(60%,60%,35%,12%,2)
+  background: #CAE0ED
+  border-radius: 50%
+.eye-right
+  +placement(40%,70%,60%,15%,2)
+  background: #48C8FF
+  border-radius: 50%
+#eye-left-shine-one
+  +placement(30%,60%,50%,-5%,2)
+  transform: rotate(-60deg)
+#eye-left-shine-two
+  +placement(25%,25%,15%,60%,2)
+.eye-left
+  +placement(40%,70%,0%,15%,2)
+  background: #48C8FF
+  border-radius: 50%
+#eye-right-shine-one
+  +placement(30%,50%,50%,0%,2)
+  transform: rotate(-65deg)
+#eye-right-shine-two
+  +placement(25%,25%,15%,60%,2)
+.shine
+  background: #FBF6ED
+  border-radius: 50%
+  opacity: .7
+.mouth
+  +placement(5%,25%,35%,55%,4)
+  transform: rotate(-75deg)
+.lips
+  background: #CAE0ED
+  border: 2px solid #A4D0ED
+  +placement(100%,100%,0%,0%,2)
+.mouth-opening-lips
+  background: #CAE0ED
+  border: 2px solid #A4D0ED
+  +placement(100%,40%,0%,-25%,2)
+  border-radius: 50%
+.mouth-opening-lips-copy
+  background: #CAE0ED
+  +placement(90%,40%,15%,10%,3)
+.mouth-opening-bottom
+  background: #CAE0ED
+  +placement(105%,30%,0%,100%,2)
+.mouth-opening
+  background: #65C6FC
+  +placement(80%,30%,20%,-15%,4)
+  border-radius: 50%
+.jelly-body
+  @extend %jelly-border
+  @extend %jelly-color
+  +placement(40%,45%,40%,45%,2)
+  border-radius: 30%
+.jelly-body-copy-inner
+  @extend %jelly-color
+  +placement(35%,45%,45%,45%,6)
+  border-radius: 20%
+#body-shine-inner
+  +placement(10%,30%,20%,82%,2)
+  transform: rotate(95deg)
+.jelly-body-right
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(37%,37%,50%,52%,3)
+  border-radius: 50%
+.leg-right
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(70%,20%,20%,92%,2)
+  border-radius: 30%
+  transform: rotate(-22deg)
+.leg-right-copy
+  @extend %jelly-color
+  +placement(15%,30%,70%,70%,5)
+  border-radius: 30%
+  transform: rotate(-45deg)
+.leg-body-fix
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(10%,30%,85%,65%,2)
+  transform: rotate(10deg)
+  border-radius: 50%
+.leg-body-fix-copy
+  @extend %jelly-color
+  +placement(10%,35%,85%,65%,2)
+  transform: rotate(10deg)
+  border-radius: 50%
+#body-shine-right
+  +placement(10%,40%,89%,35%,3)
+  transform: rotate(5deg)
+.jelly-body-left
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(37%,37%,31%,52%,3)
+  border-radius: 50%
+.leg-left
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(40%,20%,0%,85%,2)
+  border-radius: 30%
+  transform: rotate(-18deg)
+.leg-left-copy
+  @extend %jelly-color
+  +placement(15%,30%,20%,70%,5)
+  border-radius: 30%
+  transform: rotate(-45deg)
+.arm-left
+  @extend %jelly-color
+  @extend %jelly-border
+  +placement(30%,5%,15%,52%,2)
+  border-radius: 30%
+  transform: rotate(45deg)
+.arm-left-copy
+  @extend %jelly-color
+  +placement(30%,5%,15%,52%,3)
+  border-radius: 30%
+  transform: rotate(45deg)
+.clock-container
+  +placement(80%,85%,10%,10%,5)
+.clock-test
+  +placement(50%,45%,25%,50%,3)
+  box-shadow: 10px 10px 5px grey
+  border-radius: 50%
+  background: #ffcccc
+.clock
+  +placement(25%,25%,30%,25%,3)
+
+.break_time
+  +placement(50%,50%,0%,0%,3)
+  .title
+    +placement(100%,50%,0%,0%,3)
+  .title-name
+    +placement(100%,25%,0%,0%,3)
+  .title-length
+    +placement(100%,25%,0%,51%,3)
+  .numberArea
+    +placement(30%,45%,35%,60%,3)
+  .minus
+    +placement(30%,45%,10%,60%,3)
+  .plus
+    +placement(30%,45%,60%,60%,3)
+.session_time
+  +placement(60%,50%,50%,0%,3)
+  .title
+    +placement(100%,50%,0%,0%,3)
+  .title-name
+    +placement(100%,25%,0%,0%,3)
+  .title-length
+    +placement(100%,25%,0%,51%,3)
+  .numberArea
+    +placement(30%,45%,35%,60%,3)
+  .minus
+    +placement(30%,45%,10%,60%,3)
+  .plus
+    +placement(30%,45%,60%,60%,3)
+.resetButt
+  +placement(150%,90%,-35%,20%,6)
